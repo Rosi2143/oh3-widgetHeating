@@ -255,10 +255,9 @@ props:
       label: Font Settings
     - name: chartSettings
       label: Chart Settings
-timestamp: Apr 14, 2021, 9:31:45 PM
+timestamp: Nov 4, 2022, 10:08:20 PM
 component: f7-card
 config:
-  title: "=(props.location) ? 'Klima ' + props.location : ''"
   stylesheet: >
     .mylink {
       #background-color: blue !important;
@@ -314,6 +313,10 @@ config:
       left: 50%;
       transform: translate(-50%);
     }
+<<<<<<< HEAD
+=======
+  title: "=(props.location) ? 'Klima ' + props.location : ''"
+>>>>>>> f109591 (sort yaml file)
 slots:
   default:
     - component: f7-card-content
@@ -321,36 +324,36 @@ slots:
         default:
           - component: f7-row
             config:
-              resizableFixed: true
-              resizable-absolute: true
               class:
                 - justify-content-center
+              resizable-absolute: true
+              resizableFixed: true
             slots:
               default:
                 - component: f7-block
                   config:
                     class: thermostat
                     style:
+                      background: "=props.colorThermostat ? props.colorThermostat : 'var(--f7-toggle-inactive-color)'"
                       padding-top: "=props.size ? props.size + 'px': '100%'"
                       width: "=props.size ? Number(props.size)+'px' : '100%'"
-                      background: "=props.colorThermostat ? props.colorThermostat : 'var(--f7-toggle-inactive-color)'"
                   slots:
                     default:
                       - component: f7-block
                         config:
                           class: bar
                           style:
-                            width: "=props.size ? (Number(props.size)*0.89) +'px' : '89%'"
                             height: "=props.size ? (Number(props.size)*0.89) +'px' : '89%'"
+                            width: "=props.size ? (Number(props.size)*0.89) +'px' : '89%'"
                         slots:
                           default:
                             - component: f7-block
                               config:
                                 class: inner_bar
                                 style:
-                                  width: "=props.size ? (Number(props.size)*0.86) +'px' : '97%'"
-                                  height: "=props.size ? (Number(props.size)*0.86) +'px' : '97%'"
                                   background-color: "=props.colorThermostat ? props.colorThermostat : 'var(--f7-toggle-inactive-color)'"
+                                  height: "=props.size ? (Number(props.size)*0.86) +'px' : '97%'"
+                                  width: "=props.size ? (Number(props.size)*0.86) +'px' : '97%'"
                               slots:
                                 default:
                                   - component: f7-block
@@ -362,82 +365,82 @@ slots:
                               config:
                                 class: hold left
                                 style:
+                                  background-color: rgb(58, 55, 73)
+                                  border-radius: 100%
+                                  clip-path: "=props.size ? 'inset(0px 0px 0px ' + (Number(props.size)*0.89/2) + 'px)' : 'inset(0% 0% 0% 50%)'"
+                                  height: 100%
                                   margin-top: 0px
                                   position: absolute
                                   width: 100%
-                                  height: 100%
-                                  clip-path: "=props.size ? 'inset(0px 0px 0px ' + (Number(props.size)*0.89/2) + 'px)' : 'inset(0% 0% 0% 50%)'"
-                                  border-radius: 100%
-                                  background-color: rgb(58, 55, 73)
                               slots:
                                 default:
                                   - component: f7-block
                                     config:
                                       class: fill fill1
                                       style:
-                                        margin-top: 0px
-                                        position: absolute
-                                        width: 100%
-                                        height: 100%
+                                        background: "=props.colorBarStartPoint && props.colorBarEndPoint ? '-webkit-linear-gradient(top, ' + props.colorBarEndPoint + ' 20%,' + props.colorBarEndPoint + ' 100%)' : '-webkit-linear-gradient(top, rgb(255, 73, 0) 20%,rgb(255, 73, 0) 100%)'"
                                         border-radius: 100%
                                         clip-path: "=props.size ? 'inset(0px ' + (Number(props.size)*0.89/2) + 'px 0px 0px)' : 'inset(0% 50% 0% 0%)'"
-                                        background: "=props.colorBarStartPoint && props.colorBarEndPoint ? '-webkit-linear-gradient(top, ' + props.colorBarEndPoint + ' 20%,' + props.colorBarEndPoint + ' 100%)' : '-webkit-linear-gradient(top, rgb(255, 73, 0) 20%,rgb(255, 73, 0) 100%)'"
-                                        z-index: 1 !important
-                                        transition: transform 0.6s
+                                        height: 100%
+                                        margin-top: 0px
+                                        position: absolute
                                         transform: "=(items[props.setPointItem].state.split(' ')[0] >= (((Number(props.maxTemp) - Number(props.minTemp)) / 2) + Number(props.minTemp)) && items[props.setPointItem].state.split(' ')[0] <= Number(props.maxTemp) ? 'rotate('+(320/(Number(props.maxTemp)-Number(props.minTemp))*(items[props.setPointItem].state.split(' ')[0]-Number(props.minTemp))-160)+'deg)' : (items[props.setPointItem].state.split(' ')[0] > Number(props.maxTemp)) ? 'rotate(180deg)' : '')"
+                                        transition: transform 0.6s
+                                        width: 100%
+                                        z-index: 1 !important
                             - component: f7-block
                               config:
                                 class: hold right
                                 style:
+                                  background-color: rgb(58, 55, 73)
+                                  border-radius: 100%
+                                  clip-path: "=props.size ? 'inset(0px 0px 0px ' + (Number(props.size)*0.89/2) + 'px)' : 'inset(0% 0% 0% 50%)'"
+                                  height: 100%
                                   margin-top: 0px
                                   position: absolute
-                                  width: 100%
-                                  height: 100%
-                                  clip-path: "=props.size ? 'inset(0px 0px 0px ' + (Number(props.size)*0.89/2) + 'px)' : 'inset(0% 0% 0% 50%)'"
-                                  border-radius: 100%
-                                  background-color: rgb(58, 55, 73)
-                                  z-index: 3 !important
                                   transform: rotate(180deg)
+                                  width: 100%
+                                  z-index: 3 !important
                               slots:
                                 default:
                                   - component: f7-block
                                     config:
                                       class: fill
                                       style:
+                                        animation: right 1s linear both
+                                        border-radius: 100%
+                                        height: 100%
                                         margin-top: 0px
                                         position: absolute
-                                        width: 100%
-                                        height: 100%
-                                        border-radius: 100%
-                                        z-index: 3 !important
-                                        animation: right 1s linear both
                                         transition: transform 0.6s
+                                        width: 100%
+                                        z-index: 3 !important
                                   - component: f7-block
                                     config:
                                       class: fill fill2
                                       style:
-                                        position: absolute
-                                        margin-top: 0px
-                                        width: 100%
-                                        height: 100%
-                                        border-radius: 50%
-                                        z-index: 3 !important
-                                        clip-path: "=props.size ? 'inset(0px '+ (Number(props.size)*0.89/2) + 'px 0px 0px)' : 'inset(0% 50% 0% 0%)'"
                                         background: "=props.colorBarStartPoint && props.colorBarEndPoint ? '-webkit-linear-gradient(top, ' + props.colorBarEndPoint + ' 40%,' + props.colorBarStartPoint + ' 100%)' : '-webkit-linear-gradient(top, rgb(255, 73, 0) 40%,rgb(255, 158, 35) 100%)'"
+                                        border-radius: 50%
+                                        clip-path: "=props.size ? 'inset(0px '+ (Number(props.size)*0.89/2) + 'px 0px 0px)' : 'inset(0% 50% 0% 0%)'"
+                                        height: 100%
+                                        margin-top: 0px
+                                        position: absolute
                                         transform: "=(items[props.setPointItem].state.split(' ')[0] <= (((Number(props.maxTemp) - Number(props.minTemp)) / 2) + Number(props.minTemp)) && items[props.setPointItem].state.split(' ')[0] >= Number(props.minTemp) ? 'rotate('+(320/(Number(props.maxTemp)-Number(props.minTemp))*(items[props.setPointItem].state.split(' ')[0]-Number(props.minTemp))+20)+'deg)' : (items[props.setPointItem].state.split(' ')[0] > (((Number(props.maxTemp) - Number(props.minTemp)) / 2) + Number(props.minTemp))) ? 'rotate(180deg)' :  '')"
+                                        width: 100%
+                                        z-index: 3 !important
                             - component: f7-block
                               config:
                                 class: span
                                 style:
-                                  margin-top: 0px
-                                  width: "=props.size ? (Number(props.size)*0.89) +'px' : '100%'"
-                                  font-weight: "=props.size ? (Number(props.size)*2) +'px' : 'calc(var(--f7-list-item-title-font-weight)*2)'"
-                                  position: absolute
                                   bottom: 0px
+                                  color: "=props.colorTypo ? props.colorTypo : 'rgb(87, 84, 95)'"
+                                  font-size: "=props.fontSizeFooter ? props.fontSizeFooter : '1em'"
+                                  font-weight: "=props.size ? (Number(props.size)*2) +'px' : 'calc(var(--f7-list-item-title-font-weight)*2)'"
+                                  margin-top: 0px
+                                  position: absolute
                                   text-align: center
                                   text-transform: uppercase
-                                  font-size: "=props.fontSizeFooter ? props.fontSizeFooter : '1em'"
-                                  color: "=props.colorTypo ? props.colorTypo : 'rgb(87, 84, 95)'"
+                                  width: "=props.size ? (Number(props.size)*0.89) +'px' : '100%'"
                                   z-index: 99 !important
                               slots:
                                 default:
@@ -448,43 +451,43 @@ slots:
                         config:
                           class: shadow
                           style:
+                            animation: shadow 1.4s ease-out both
+                            height: 86%
+                            left: 50%
                             margin-top: 0px
                             position: absolute
-                            top: 50%
-                            left: 50%
-                            transform: "=(items[props.setPointItem].state.split(' ')[0] >= Number(props.minTemp) && items[props.setPointItem].state.split(' ')[0] <= Number(props.maxTemp) ? 'translate(-50%, -50%) rotate('+(320/(Number(props.maxTemp)-Number(props.minTemp))*(items[props.setPointItem].state.split(' ')[0]-Number(props.minTemp))-160)+'deg)' : 'translate(-50%, -50%) rotate(0deg)')"
-                            width: "=props.size ? (Number(props.size)*0.0625) +'px' : '6.25%'"
-                            height: 86%
                             text-align: center
+                            top: 50%
+                            transform: "=(items[props.setPointItem].state.split(' ')[0] >= Number(props.minTemp) && items[props.setPointItem].state.split(' ')[0] <= Number(props.maxTemp) ? 'translate(-50%, -50%) rotate('+(320/(Number(props.maxTemp)-Number(props.minTemp))*(items[props.setPointItem].state.split(' ')[0]-Number(props.minTemp))-160)+'deg)' : 'translate(-50%, -50%) rotate(0deg)')"
                             transition: 0.7s ease
-                            animation: shadow 1.4s ease-out both
+                            width: "=props.size ? (Number(props.size)*0.0625) +'px' : '6.25%'"
                         slots:
                           default:
                             - component: f7-block
                               config:
                                 class: shadow-cube
                                 style:
+                                  box-shadow: "=props.size ? '0 0 ' + (Number(props.size)*0.1125) +'px ' + (Number(props.size)*0.0325) + 'px ' + (props.colorSetMarker ? props.colorSetMarker : 'rgba(255, 158, 35, 0.5)'): '0 0 45px 13px rgba(255, 158, 35, 0.5)'"
+                                  height: 0px
                                   margin-top: 0px
                                   position: absolute
                                   top: 0
                                   width: "=props.size ? (Number(props.size)*0.0625) +'px' : '100%'"
-                                  height: 0px
-                                  box-shadow: "=props.size ? '0 0 ' + (Number(props.size)*0.1125) +'px ' + (Number(props.size)*0.0325) + 'px ' + (props.colorSetMarker ? props.colorSetMarker : 'rgba(255, 158, 35, 0.5)'): '0 0 45px 13px rgba(255, 158, 35, 0.5)'"
                       - component: f7-block
                         config:
                           class: markerContainer
                           style:
-                            pointer-events: none
-                            margin-top: 0px
-                            position: absolute
-                            top: 50%
-                            left: 50%
-                            transform: "=(items[props.currentPointItem].state.split(' ')[0] >= Number(props.minTemp) && items[props.currentPointItem].state.split(' ')[0] <= Number(props.maxTemp) ? 'translate(-50%, -50%) rotate('+(320/(Number(props.maxTemp)-Number(props.minTemp))*(items[props.currentPointItem].state.split(' ')[0]-Number(props.minTemp))-160)+'deg)' : 'translate(-50%, -50%) rotate(0deg)')"
-                            width: "=props.size ? (Number(props.size)*0.1) +'px' : '10%'"
                             height: 100%
-                            text-align: center
-                            transition: 0.7s ease
+                            left: 50%
+                            margin-top: 0px
                             opacity: 1
+                            pointer-events: none
+                            position: absolute
+                            text-align: center
+                            top: 50%
+                            transform: "=(items[props.currentPointItem].state.split(' ')[0] >= Number(props.minTemp) && items[props.currentPointItem].state.split(' ')[0] <= Number(props.maxTemp) ? 'translate(-50%, -50%) rotate('+(320/(Number(props.maxTemp)-Number(props.minTemp))*(items[props.currentPointItem].state.split(' ')[0]-Number(props.minTemp))-160)+'deg)' : 'translate(-50%, -50%) rotate(0deg)')"
+                            transition: 0.7s ease
+                            width: "=props.size ? (Number(props.size)*0.1) +'px' : '10%'"
                             z-index: 99 !important
                         slots:
                           default:
@@ -492,53 +495,53 @@ slots:
                               config:
                                 class: markerCurrent
                                 style:
-                                  margin-top: 0px
-                                  width: "=props.size ? (Number(props.size)*0.1) +'px' : '100%'"
-                                  height: "=props.size ? (Number(props.size)*0.1) +'px' : ''"
-                                  padding-top: "=props.size ? '' : '100%'"
                                   background: "=props.colorCurrentMarker ? props.colorCurrentMarker : 'rgb(33, 150, 243)'"
-                                  position: absolute
-                                  transform: translate(-50%,-50%) rotate(45deg)
-                                  left: 50%
-                                  top: "=props.size ? (Number(props.size)*0.14) +'px' : '15%'"
                                   border-radius: 0% 50% 50% 50%
                                   box-shadow: 0 0 5px 1px rgb(48, 46, 56)
+                                  height: "=props.size ? (Number(props.size)*0.1) +'px' : ''"
+                                  left: 50%
+                                  margin-top: 0px
+                                  padding-top: "=props.size ? '' : '100%'"
+                                  position: absolute
+                                  top: "=props.size ? (Number(props.size)*0.14) +'px' : '15%'"
+                                  transform: translate(-50%,-50%) rotate(45deg)
+                                  width: "=props.size ? (Number(props.size)*0.1) +'px' : '100%'"
                               slots:
                                 default:
                                   - component: f7-block
                                     config:
                                       class: number
                                       style:
+                                        left: 50%
                                         margin-top: 0px
                                         position: absolute
-                                        top: 50%
-                                        left: 50%
-                                        transform: translate(-50%, -50%) rotate(-45deg)
                                         text-align: center
+                                        top: 50%
+                                        transform: translate(-50%, -50%) rotate(-45deg)
                                     slots:
                                       default:
                                         - component: Label
                                           config:
-                                            text: =items[props.currentPointItem].state.split(' ')[0]
                                             style:
-                                              font-size: "=props.fontSizeMarker ? props.fontSizeMarker : '1em'"
                                               color: white
+                                              font-size: "=props.fontSizeMarker ? props.fontSizeMarker : '1em'"
                                               font-weight: bold
+                                            text: =items[props.currentPointItem].state.split(' ')[0]
                       - component: f7-block
                         config:
                           class: markerContainer
                           style:
-                            pointer-events: none
-                            margin-top: 0px
-                            position: absolute
-                            top: 50%
-                            left: 50%
-                            transform: "=(items[props.setPointItem].state.split(' ')[0] >= Number(props.minTemp) && items[props.setPointItem].state.split(' ')[0] <= Number(props.maxTemp) ? 'translate(-50%, -50%) rotate('+(320/(Number(props.maxTemp)-Number(props.minTemp))*(items[props.setPointItem].state.split(' ')[0]-Number(props.minTemp))-160)+'deg)' : 'translate(-50%, -50%) rotate(0deg)')"
-                            width: "=props.size ? (Number(props.size)*0.1) +'px' : '10%'"
                             height: 100%
-                            text-align: center
-                            transition: 0.7s ease
+                            left: 50%
+                            margin-top: 0px
                             opacity: 1
+                            pointer-events: none
+                            position: absolute
+                            text-align: center
+                            top: 50%
+                            transform: "=(items[props.setPointItem].state.split(' ')[0] >= Number(props.minTemp) && items[props.setPointItem].state.split(' ')[0] <= Number(props.maxTemp) ? 'translate(-50%, -50%) rotate('+(320/(Number(props.maxTemp)-Number(props.minTemp))*(items[props.setPointItem].state.split(' ')[0]-Number(props.minTemp))-160)+'deg)' : 'translate(-50%, -50%) rotate(0deg)')"
+                            transition: 0.7s ease
+                            width: "=props.size ? (Number(props.size)*0.1) +'px' : '10%'"
                             z-index: 99 !important
                         slots:
                           default:
@@ -546,17 +549,17 @@ slots:
                               config:
                                 class: markerSet
                                 style:
-                                  margin-top: 0px
-                                  width: "=props.size ? (Number(props.size)*0.1) +'px' : '100%'"
-                                  height: "=props.size ? (Number(props.size)*0.1) +'px' : ''"
-                                  padding-top: "=props.size ? '' : '100%'"
                                   background: "=props.colorSetMarker ? props.colorSetMarker : 'rgb(230, 74, 25)'"
-                                  position: absolute
-                                  transform: translate(-50%,-50%) rotate(-45deg)
-                                  left: 50%
-                                  top: "=props.size ?  (Number(props.size)*Number(-0.0125)) +'px': '-2%'"
                                   border-radius: 50% 50% 50% 0
                                   box-shadow: 0 0 5px 1px rgb(48, 46, 56)
+                                  height: "=props.size ? (Number(props.size)*0.1) +'px' : ''"
+                                  left: 50%
+                                  margin-top: 0px
+                                  padding-top: "=props.size ? '' : '100%'"
+                                  position: absolute
+                                  top: "=props.size ?  (Number(props.size)*Number(-0.0125)) +'px': '-2%'"
+                                  transform: translate(-50%,-50%) rotate(-45deg)
+                                  width: "=props.size ? (Number(props.size)*0.1) +'px' : '100%'"
                                   z-index: 100 !important
                               slots:
                                 default:
@@ -564,60 +567,60 @@ slots:
                                     config:
                                       class: number
                                       style:
+                                        left: 50%
                                         margin-top: 0px
                                         position: absolute
-                                        top: 50%
-                                        left: 50%
-                                        transform: translate(-50%, -50%) rotate(45deg)
                                         text-align: center
+                                        top: 50%
+                                        transform: translate(-50%, -50%) rotate(45deg)
                                     slots:
                                       default:
                                         - component: Label
                                           config:
-                                            text: =items[props.setPointItem].state.split(' ')[0]
                                             style:
-                                              font-size: "=props.fontSizeMarker ? props.fontSizeMarker : '1em'"
                                               color: white
+                                              font-size: "=props.fontSizeMarker ? props.fontSizeMarker : '1em'"
                                               font-weight: bold
+                                            text: =items[props.setPointItem].state.split(' ')[0]
                       - component: f7-block
                         config:
                           class: center
                           style:
-                            margin-top: 0px
-                            position: absolute
-                            width: "=props.size ? (Number(props.size)*0.65) +'px' : '65%'"
-                            height: "=props.size ? (Number(props.size)*0.65) +'px' : '65%'"
                             background: "=props.colorControlRing ? props.colorControlRing : 'rgb(227, 228, 237)'"
-                            top: 50%
-                            left: 50%
-                            transform: translate(-50%, -50%)
                             border-radius: 50%
                             box-shadow: 0px 15px 35px 11px rgba(46, 44, 58,0.60)
+                            height: "=props.size ? (Number(props.size)*0.65) +'px' : '65%'"
+                            left: 50%
+                            margin-top: 0px
+                            position: absolute
+                            top: 50%
+                            transform: translate(-50%, -50%)
+                            width: "=props.size ? (Number(props.size)*0.65) +'px' : '65%'"
                         slots:
                           default:
                             - component: f7-swiper
                               config:
                                 pagination: true
-                                scrollbar: false
                                 params:
-                                  slidesPerView: 1
                                   direction: horizontal
                                   mousewheel: true
+                                  slidesPerView: 1
+                                scrollbar: false
                                 style:
-                                  width: 100%
+                                  border-radius: 50%
                                   height: 100%
+                                  left: 50%
                                   position: absolute
                                   top: 50%
-                                  left: 50%
                                   transform: translate(-50%, -50%)
-                                  border-radius: 50%
+                                  width: 100%
                               slots:
                                 default:
                                   - component: f7-swiper-slide
                                     config:
                                       style:
-                                        width: 100%
                                         height: 100%
+                                        width: 100%
                                     slots:
                                       default:
                                         - component: f7-block
@@ -625,14 +628,14 @@ slots:
                                             class: page
                                             style:
                                               background: transparent
+                                              border-radius: 50%
+                                              height: 100%
+                                              left: 50%
                                               margin-top: 0px
                                               position: absolute
-                                              width: 100%
-                                              height: 100%
                                               top: 50%
-                                              left: 50%
                                               transform: translate(-50%, -50%)
-                                              border-radius: 50%
+                                              width: 100%
                                           slots:
                                             default:
                                               - component: f7-block
@@ -640,16 +643,16 @@ slots:
                                                   class: buttonContainer
                                                   style:
                                                     display: "=props.heatingModeItem ? '' : 'none'"
-                                                    margin-top: 0px
-                                                    position: absolute
-                                                    top: 50%
-                                                    left: 50%
-                                                    transform: "=props.exampleModeItem ? 'translate(-50%, -50%) rotate(30deg)' : 'translate(-50%, -50%)'"
-                                                    width: "=props.size ? (Number(props.size)*0.15) +'px' : '15%'"
                                                     height: 100%
-                                                    text-align: center
-                                                    transition: 0.7s ease
+                                                    left: 50%
+                                                    margin-top: 0px
                                                     opacity: 1
+                                                    position: absolute
+                                                    text-align: center
+                                                    top: 50%
+                                                    transform: "=props.exampleModeItem ? 'translate(-50%, -50%) rotate(30deg)' : 'translate(-50%, -50%)'"
+                                                    transition: 0.7s ease
+                                                    width: "=props.size ? (Number(props.size)*0.15) +'px' : '15%'"
                                                     z-index: 99 !important
                                                 slots:
                                                   default:
@@ -657,13 +660,13 @@ slots:
                                                       config:
                                                         popoverOpen: ='.' + props.location + '.popoverHeatingMode'
                                                         style:
-                                                          width: 100%
-                                                          height: 20%
-                                                          position: absolute
                                                           bottom: 0%
-                                                          left: 50%
-                                                          transform: translate(-50%)
                                                           color: "=props.colorButton ? props.colorButton + ' !important': ''"
+                                                          height: 20%
+                                                          left: 50%
+                                                          position: absolute
+                                                          transform: translate(-50%)
+                                                          width: 100%
                                                       slots:
                                                         default:
                                                           - component: f7-icon
@@ -671,10 +674,10 @@ slots:
                                                               f7: "=props.heatingModeItem ? (items[props.heatingModeItem].state ==  props.heatingModeArray.split(',')[0] ? 'hand_raised' : items[props.heatingModeItem].state == props.heatingModeArray.split(',')[1] ? 'arrow_2_squarepath' : items[props.heatingModeItem].state == props.heatingModeArray.split(',')[2] ? 'airplane' : 'thermometer') : ''"
                                                               style:
                                                                 font-size: "=props.fontSizeButtons ? props.fontSizeButtons : '2em'"
-                                                                position: absolute
-                                                                transform: translate(-50%, -50%)
-                                                                top: 50%
                                                                 margin-top: auto
+                                                                position: absolute
+                                                                top: 50%
+                                                                transform: translate(-50%, -50%)
                                                           - component: f7-popover
                                                             config:
                                                               class: =props.location + ' popoverHeatingMode'
@@ -682,13 +685,13 @@ slots:
                                                               default:
                                                                 - component: f7-card
                                                                   config:
-                                                                    noShadow: true
-                                                                    class:
-                                                                      - popover-close
                                                                     action: variable
                                                                     actionVariable: myVar
-                                                                    clearVariable: true
                                                                     actionVariableValue: success
+                                                                    class:
+                                                                      - popover-close
+                                                                    clearVariable: true
+                                                                    noShadow: true
                                                                   slots:
                                                                     default:
                                                                       - component: f7-row
@@ -709,29 +712,29 @@ slots:
                                                                                     : ? default
                                                                                       : - component: oh-button
                                                                                           ? config
-                                                                                          : color: "=props.colorButton ? props.colorButton : ''"
-                                                                                            class: margin
-                                                                                            text: =loop.buttonlabel
-                                                                                            outline: true
-                                                                                            action: command
-                                                                                            active: "=props.heatingModeItem ? (items[props.heatingModeItem].state === loop.buttonlabel ? true : false) : ''"
+                                                                                          : action: command
                                                                                             actionCommand: =loop.buttonlabel
                                                                                             actionItem: "=props.heatingModeItem ? props.heatingModeItem : ''"
+                                                                                            active: "=props.heatingModeItem ? (items[props.heatingModeItem].state === loop.buttonlabel ? true : false) : ''"
+                                                                                            class: margin
+                                                                                            color: "=props.colorButton ? props.colorButton : ''"
+                                                                                            outline: true
+                                                                                            text: =loop.buttonlabel
                                               - component: f7-block
                                                 config:
                                                   class: buttonContainer
                                                   style:
                                                     display: "=props.exampleModeItem ? '' : 'none'"
-                                                    margin-top: 0px
-                                                    position: absolute
-                                                    top: 50%
-                                                    left: 50%
-                                                    transform: "=props.heatingModeItem ? 'translate(-50%, -50%) rotate(-30deg)' : 'translate(-50%, -50%)'"
-                                                    width: "=props.size ? (Number(props.size)*0.15) +'px' : '15%'"
                                                     height: 100%
-                                                    text-align: center
-                                                    transition: 0.7s ease
+                                                    left: 50%
+                                                    margin-top: 0px
                                                     opacity: 1
+                                                    position: absolute
+                                                    text-align: center
+                                                    top: 50%
+                                                    transform: "=props.heatingModeItem ? 'translate(-50%, -50%) rotate(-30deg)' : 'translate(-50%, -50%)'"
+                                                    transition: 0.7s ease
+                                                    width: "=props.size ? (Number(props.size)*0.15) +'px' : '15%'"
                                                     z-index: 99 !important
                                                 slots:
                                                   default:
@@ -739,13 +742,13 @@ slots:
                                                       config:
                                                         popoverOpen: ='.' + props.location + '.popoverExampleMode'
                                                         style:
-                                                          width: 100%
-                                                          height: 20%
-                                                          position: absolute
                                                           bottom: 0%
-                                                          left: 50%
-                                                          transform: translate(-50%)
                                                           color: "=props.colorButton ? props.colorButton + ' !important': ''"
+                                                          height: 20%
+                                                          left: 50%
+                                                          position: absolute
+                                                          transform: translate(-50%)
+                                                          width: 100%
                                                       slots:
                                                         default:
                                                           - component: f7-icon
@@ -753,10 +756,10 @@ slots:
                                                               f7: wrench
                                                               style:
                                                                 font-size: "=props.fontSizeButtons ? props.fontSizeButtons : '2em'"
-                                                                position: absolute
-                                                                transform: translate(-50%, -50%)
-                                                                top: 50%
                                                                 margin-top: auto
+                                                                position: absolute
+                                                                top: 50%
+                                                                transform: translate(-50%, -50%)
                                                           - component: f7-popover
                                                             config:
                                                               class: =props.location + ' popoverExampleMode'
@@ -764,13 +767,13 @@ slots:
                                                               default:
                                                                 - component: f7-card
                                                                   config:
-                                                                    noShadow: true
-                                                                    class:
-                                                                      - popover-close
                                                                     action: variable
                                                                     actionVariable: myVar
-                                                                    clearVariable: true
                                                                     actionVariableValue: success
+                                                                    class:
+                                                                      - popover-close
+                                                                    clearVariable: true
+                                                                    noShadow: true
                                                                   slots:
                                                                     default:
                                                                       - component: f7-row
@@ -783,118 +786,134 @@ slots:
                                                                               : ? default
                                                                                 : - component: oh-repeater
                                                                                     ? config
+<<<<<<< HEAD
                                                                                     : for: buttonlabel
                                                                                       in: =props.exampleModeArray.split(",")
                                                                                       ? containerStyle
                                                                                       : width: 100%
+=======
+                                                                                    : ? containerStyle
+                                                                                      : width: 100%
+                                                                                      for: buttonlabel
+                                                                                      in: =props.exampleModeArray.split(",")
+>>>>>>> f109591 (sort yaml file)
                                                                                     ? slots
                                                                                     : ? default
                                                                                       : - component: oh-button
                                                                                           ? config
+<<<<<<< HEAD
                                                                                           : color: "=props.colorButton ? props.colorButton : ''"
                                                                                             class: margin
                                                                                             text: =loop.buttonlabel
                                                                                             outline: true
                                                                                             action: command
                                                                                             active: "=props.exampleModeItem ? (items[props.exampleModeItem].state === loop.buttonlabel ? true : false) : ''"
+=======
+                                                                                          : action: command
+>>>>>>> f109591 (sort yaml file)
                                                                                             actionCommand: =loop.buttonlabel
                                                                                             actionItem: "=props.exampleModeItem ? props.exampleModeItem : ''"
+                                                                                            active: "=props.exampleModeItem ? (items[props.exampleModeItem].state === loop.buttonlabel ? true : false) : ''"
+                                                                                            class: margin
+                                                                                            color: "=props.colorButton ? props.colorButton : ''"
+                                                                                            outline: true
+                                                                                            text: =loop.buttonlabel
                                               - component: oh-button
                                                 config:
-                                                  style:
-                                                    width: 30%
-                                                    height: 50%
-                                                    position: absolute
-                                                    margin-top: 0px
-                                                    top: 50%
-                                                    left: 10%
-                                                    transform: translate(-50%, -50%)
-                                                    color: "=props.colorButton ? props.colorButton : ''"
                                                   action: command
-                                                  actionItem: =props.setPointItem
                                                   actionCommand: "=Number(items[props.setPointItem].state.split(' ')[0]) > Number(props.minTemp) ? Number(items[props.setPointItem].state.split(' ')[0]) - 0.5 : ''"
+                                                  actionItem: =props.setPointItem
+                                                  style:
+                                                    color: "=props.colorButton ? props.colorButton : ''"
+                                                    height: 50%
+                                                    left: 10%
+                                                    margin-top: 0px
+                                                    position: absolute
+                                                    top: 50%
+                                                    transform: translate(-50%, -50%)
+                                                    width: 30%
                                                 slots:
                                                   default:
                                                     - component: f7-icon
                                                       config:
+                                                        f7: arrow_turn_left_down
                                                         style:
                                                           font-size: "=props.fontSizeButtons ? props.fontSizeButtons : '2em'"
-                                                          position: absolute
-                                                          transform: translate(-50%, -50%)
-                                                          top: 50%
                                                           margin-top: auto
-                                                        f7: arrow_turn_left_down
+                                                          position: absolute
+                                                          top: 50%
+                                                          transform: translate(-50%, -50%)
                                               - component: oh-button
                                                 config:
-                                                  style:
-                                                    width: 30%
-                                                    height: 50%
-                                                    position: relative
-                                                    margin-top: 0px
-                                                    top: 50%
-                                                    left: 90%
-                                                    transform: translate(-50%, -50%)
-                                                    color: "=props.colorButton ? props.colorButton : ''"
                                                   action: command
-                                                  actionItem: =props.setPointItem
                                                   actionCommand: "=Number(items[props.setPointItem].state.split(' ')[0]) < Number(props.maxTemp) ? Number(items[props.setPointItem].state.split(' ')[0]) + 0.5 : ''"
+                                                  actionItem: =props.setPointItem
+                                                  style:
+                                                    color: "=props.colorButton ? props.colorButton : ''"
+                                                    height: 50%
+                                                    left: 90%
+                                                    margin-top: 0px
+                                                    position: relative
+                                                    top: 50%
+                                                    transform: translate(-50%, -50%)
+                                                    width: 30%
                                                 slots:
                                                   default:
                                                     - component: f7-icon
                                                       config:
+                                                        f7: arrow_turn_right_up
                                                         style:
                                                           font-size: "=props.fontSizeButtons ? props.fontSizeButtons : '2em'"
-                                                          position: absolute
-                                                          transform: translate(-50%, -50%)
-                                                          top: 50%
                                                           margin-top: auto
-                                                        f7: arrow_turn_right_up
+                                                          position: absolute
+                                                          top: 50%
+                                                          transform: translate(-50%, -50%)
                                               - component: f7-block
                                                 config:
                                                   class: valveAnimation
                                                   style:
-                                                    z-index: -100 !important
-                                                    pointer-events: none
-                                                    display: "=(props.valveItem && items[props.valveItem].state == 'ON' )? '' : 'none'"
+                                                    animation: skeleton-effect-fade 2s linear infinite
                                                     background: "=props.colorSetMarker ? 'radial-gradient(' + props.colorSetMarker +' 30%, transparent 50%)' : 'radial-gradient(var(--f7-theme-color) 30%, transparent 50%)'"
+                                                    border-radius: 50%
+                                                    display: "=(props.valveItem && items[props.valveItem].state == 'ON' )? '' : 'none'"
+                                                    height: 100%
+                                                    left: 50%
                                                     margin-top: 0px
+                                                    pointer-events: none
                                                     position: absolute
+                                                    top: 50%
                                                     transform: translate(-50%, -50%)
                                                     width: 100%
-                                                    height: 100%
-                                                    top: 50%
-                                                    left: 50%
-                                                    border-radius: 50%
-                                                    animation: skeleton-effect-fade 2s linear infinite
+                                                    z-index: -100 !important
                                               - component: f7-block
                                                 config:
                                                   class: small
                                                   style:
-                                                    z-index: 100 !important
-                                                    margin-top: 0px
-                                                    position: absolute
-                                                    width: "=props.size ? (Number(props.size)*0.375) +'px' : '57.6%'"
-                                                    height: "=props.size ? (Number(props.size)*0.375) +'px' : '57.6%'"
-                                                    background: "=props.colorCenter ? props.colorCenter : 'rgb(248, 249, 250)'"
-                                                    text-align: center
                                                     animation: bound-in-small 0.6s ease forwards
-                                                    top: 50%
-                                                    left: 50%
-                                                    transform: translate(-50%, -50%)
+                                                    background: "=props.colorCenter ? props.colorCenter : 'rgb(248, 249, 250)'"
                                                     border-radius: 50%
                                                     box-shadow: 0px 5px 10px 5px rgba(96, 93, 111,0.19)
+                                                    height: "=props.size ? (Number(props.size)*0.375) +'px' : '57.6%'"
+                                                    left: 50%
+                                                    margin-top: 0px
+                                                    position: absolute
+                                                    text-align: center
+                                                    top: 50%
+                                                    transform: translate(-50%, -50%)
+                                                    width: "=props.size ? (Number(props.size)*0.375) +'px' : '57.6%'"
+                                                    z-index: 100 !important
                                                 slots:
                                                   default:
                                                     - component: f7-block
                                                       config:
                                                         class: heat
                                                         style:
-                                                          font-size: "=props.fontSizeLocation ? props.fontSizeLocation : '1em'"
                                                           color: "=props.colorTypo ? props.colorTypo : 'rgb(87, 84, 95)'"
+                                                          font-size: "=props.fontSizeLocation ? props.fontSizeLocation : '1em'"
                                                           font-weight: 300
-                                                          transform: translate(-50%)
                                                           left: 50%
                                                           margin-top: 10%
+                                                          transform: translate(-50%)
                                                       slots:
                                                         default:
                                                           - component: Label
@@ -902,22 +921,22 @@ slots:
                                                               text: =props.location
                                                     - component: f7-swiper
                                                       config:
-                                                        scrollbar: false
                                                         params:
                                                           autoplay:
                                                             delay: 1500
                                                             disableOnInteraction: false
-                                                          slidesPerView: 1
                                                           direction: vertical
                                                           mousewheel: true
+                                                          slidesPerView: 1
+                                                        scrollbar: false
                                                         style:
-                                                          width: 100%
+                                                          border-radius: 50%
                                                           height: 100%
+                                                          left: 50%
                                                           position: absolute
                                                           top: 50%
-                                                          left: 50%
                                                           transform: translate(-50%, -50%)
-                                                          border-radius: 50%
+                                                          width: 100%
                                                       slots:
                                                         default:
                                                           - component: f7-swiper-slide
@@ -930,15 +949,15 @@ slots:
                                                                   config:
                                                                     class: heat
                                                                     style:
-                                                                      margin-top: 0
-                                                                      font-size: "=props.fontSizeCenter ? props.fontSizeCenter : '2em'"
                                                                       color: "=props.colorTypo ? props.colorTypo : 'rgb(87, 84, 95)'"
-                                                                      font-weight: 300
-                                                                      position: absolute
-                                                                      transform: translate(-50%,-50%)
-                                                                      top: 50%
-                                                                      left: 50%
                                                                       display: flex
+                                                                      font-size: "=props.fontSizeCenter ? props.fontSizeCenter : '2em'"
+                                                                      font-weight: 300
+                                                                      left: 50%
+                                                                      margin-top: 0
+                                                                      position: absolute
+                                                                      top: 50%
+                                                                      transform: translate(-50%,-50%)
                                                                   slots:
                                                                     default:
                                                                       - component: Label
@@ -946,10 +965,10 @@ slots:
                                                                           text: =items[props.humItem].state
                                                                       - component: Label
                                                                         config:
-                                                                          text: =items[props.humItem].displayState.split(' ')[1]
                                                                           style:
                                                                             font-size: "=props.fontSizeCenter ? 'calc(' + props.fontSizeCenter + ' * 0.2 )' : '0.6em'"
                                                                             vertical-align: top
+                                                                          text: =items[props.humItem].displayState.split(' ')[1]
                                                           - component: f7-swiper-slide
                                                             config:
                                                               style:
@@ -960,41 +979,41 @@ slots:
                                                                   config:
                                                                     class: heat
                                                                     style:
-                                                                      margin-top: 0
-                                                                      font-size: "=props.fontSizeCenter ? props.fontSizeCenter : '2em'"
                                                                       color: "=props.colorTypo ? props.colorTypo : 'rgb(87, 84, 95)'"
-                                                                      font-weight: 300
-                                                                      position: absolute
-                                                                      transform: translate(-50%,-50%)
-                                                                      top: 50%
-                                                                      left: 50%
                                                                       display: flex
+                                                                      font-size: "=props.fontSizeCenter ? props.fontSizeCenter : '2em'"
+                                                                      font-weight: 300
+                                                                      left: 50%
+                                                                      margin-top: 0
+                                                                      position: absolute
+                                                                      top: 50%
+                                                                      transform: translate(-50%,-50%)
                                                                   slots:
                                                                     default:
                                                                       - component: Label
                                                                         config:
-                                                                          text: =Number(items[props.currentPointItem].state).toFixed(1)
+                                                                          text: =Number(items[props.currentPointItem].state.split(' ')[0]).toFixed(1)
                                                                       - component: Label
                                                                         config:
-                                                                          text: "=props.unit ? props.unit : items[props.currentPointItem].displayState.split(' ')[1]"
                                                                           style:
                                                                             font-size: "=props.fontSizeCenter ? 'calc(' + props.fontSizeCenter + ' * 0.2 )' : '0.6em'"
                                                                             vertical-align: top
+                                                                          text: "=props.unit ? props.unit : items[props.currentPointItem].displayState.split(' ')[1]"
                                                     - component: oh-image
                                                       config:
-                                                        url: "=props.imgUrl ? props.imgUrl : 'https://community-openhab-org.s3-eu-central-1.amazonaws.com/original/2X/7/7d388a86c95471f89b1bb911d96d7609a3e3a059.svg'"
                                                         style:
+                                                          bottom: 5%
+                                                          left: 50%
                                                           position: absolute
                                                           transform: translate(-50%)
-                                                          left: 50%
-                                                          bottom: 5%
                                                           width: 40%
+                                                        url: "=props.imgUrl ? props.imgUrl : 'https://community-openhab-org.s3-eu-central-1.amazonaws.com/original/2X/7/7d388a86c95471f89b1bb911d96d7609a3e3a059.svg'"
                                   - component: f7-swiper-slide
                                     config:
                                       style:
-                                        width: 100%
-                                        height: 100%
                                         display: "=props.chartSwitch ? '' : 'none'"
+                                        height: 100%
+                                        width: 100%
                                     slots:
                                       default:
                                         - component: f7-block
@@ -1002,166 +1021,166 @@ slots:
                                             class: page
                                             style:
                                               background: transparent
+                                              border-radius: 50%
+                                              height: 100%
+                                              left: 50%
                                               margin-top: 0px
                                               position: absolute
-                                              width: 100%
-                                              height: 100%
                                               top: 50%
-                                              left: 50%
                                               transform: translate(-50%, -50%)
-                                              border-radius: 50%
+                                              width: 100%
                                           slots:
                                             default:
                                               - component: oh-chart
                                                 config:
                                                   height: 100%
-                                                  periodVisible: false
                                                   period: 12h
+                                                  periodVisible: false
                                                 slots:
-                                                  title:
-                                                    - component: oh-chart-title
-                                                      config:
-                                                        text: 12h
-                                                        left: center
-                                                        bottom: 10%
-                                                        textStyle:
-                                                          fontSize: 1em
-                                                          fontWeight: normal
                                                   grid:
                                                     - component: oh-chart-grid
                                                       config:
-                                                        show: true
                                                         borderWidth: 0
-                                                        top: 20%
+                                                        height: 60%
                                                         left: 15%
                                                         right: 15%
-                                                        height: 60%
-                                                  xAxis:
-                                                    - component: oh-time-axis
-                                                      config:
                                                         show: true
-                                                        gridIndex: 0
-                                                        name: Uhrzeit
-                                                        boundaryGap: false
-                                                        axisLine:
-                                                          onZero: true
-                                                        axisTick:
-                                                          show: false
-                                                        axisLabel:
-                                                          show: false
-                                                        axisPointer:
-                                                          label:
-                                                            show: false
-                                                  yAxis:
-                                                    - component: oh-value-axis
-                                                      config:
-                                                        show: false
-                                                        gridIndex: 0
-                                                        min: auto
-                                                        max: auto
-                                                        name: Temperatur
-                                                        nameLocation: center
-                                                        nameGap: 45
-                                                        axisLabel:
-                                                          formatter: "{value} °C"
+                                                        top: 20%
                                                   series:
                                                     - component: oh-time-series
                                                       config:
                                                         data:
                                                           name: istTemp
-                                                        name: Ist Temp. Indoor
                                                         gridIndex: 0
-                                                        xAxisIndex: 0
-                                                        yAxisIndex: 0
-                                                        type: line
                                                         item: "=props.currentPointItem ? props.currentPointItem : ''"
-                                                        markPoint:
-                                                          itemStyle:
-                                                            color: "=props.colorCurrentMarker ? props.colorCurrentMarker : 'rgb(33, 150, 243)'"
-                                                          data:
-                                                            - type: max
-                                                              name: Höchsttemperatur
-                                                            - type: min
-                                                              name: Tiefsttemperatur
-                                                        smooth: true
                                                         lineStyle:
                                                           color: "=props.colorCurrentMarker ? props.colorCurrentMarker : 'rgb(33, 150, 243)'"
-                                                    - component: oh-time-series
-                                                      config:
-                                                        name: Soll Temp. Indoor
-                                                        gridIndex: 0
+                                                        markPoint:
+                                                          data:
+                                                            - name: Höchsttemperatur
+                                                              type: max
+                                                            - name: Tiefsttemperatur
+                                                              type: min
+                                                          itemStyle:
+                                                            color: "=props.colorCurrentMarker ? props.colorCurrentMarker : 'rgb(33, 150, 243)'"
+                                                        name: Ist Temp. Indoor
+                                                        smooth: true
+                                                        type: line
                                                         xAxisIndex: 0
                                                         yAxisIndex: 0
-                                                        type: line
+                                                    - component: oh-time-series
+                                                      config:
+                                                        gridIndex: 0
                                                         item: "=props.setPointItem ? props.setPointItem : ''"
-                                                        step: end
                                                         lineStyle:
                                                           color: "=props.colorSetMarker ? props.colorSetMarker : 'rgb(230, 74, 25)'"
+                                                        name: Soll Temp. Indoor
+                                                        step: end
+                                                        type: line
+                                                        xAxisIndex: 0
+                                                        yAxisIndex: 0
+                                                  title:
+                                                    - component: oh-chart-title
+                                                      config:
+                                                        bottom: 10%
+                                                        left: center
+                                                        text: 12h
+                                                        textStyle:
+                                                          fontSize: 1em
+                                                          fontWeight: normal
+                                                  xAxis:
+                                                    - component: oh-time-axis
+                                                      config:
+                                                        axisLabel:
+                                                          show: false
+                                                        axisLine:
+                                                          onZero: true
+                                                        axisPointer:
+                                                          label:
+                                                            show: false
+                                                        axisTick:
+                                                          show: false
+                                                        boundaryGap: false
+                                                        gridIndex: 0
+                                                        name: Uhrzeit
+                                                        show: true
+                                                  yAxis:
+                                                    - component: oh-value-axis
+                                                      config:
+                                                        axisLabel:
+                                                          formatter: "{value} °C"
+                                                        gridIndex: 0
+                                                        max: auto
+                                                        min: auto
+                                                        name: Temperatur
+                                                        nameGap: 45
+                                                        nameLocation: center
+                                                        show: false
                                   - component: f7-swiper-slide
                                     config:
                                       style:
-                                        width: 100%
-                                        height: 100%
                                         display: "=(props.extensionItem1 || props.extensionItem2)? '' : 'none'"
+                                        height: 100%
+                                        width: 100%
                                     slots:
                                       default:
                                         - component: f7-block
                                           config:
                                             class: page
                                             style:
-                                              font-size: "=props.fontSizeLocation ? props.fontSizeLocation : '1em'"
                                               background: transparent
+                                              border-radius: 50%
+                                              font-size: "=props.fontSizeLocation ? props.fontSizeLocation : '1em'"
+                                              height: 100%
+                                              left: 50%
                                               margin-top: 0px
                                               position: absolute
-                                              width: 100%
-                                              height: 100%
                                               top: 50%
-                                              left: 50%
                                               transform: translate(-50%, -50%)
-                                              border-radius: 50%
+                                              width: 100%
                                           slots:
                                             default:
                                               - component: Label
                                                 config:
-                                                  text: Extension Items
                                                   style:
-                                                    margin-top: 5%
                                                     margin-bottom: 5%
+                                                    margin-top: 5%
                                                     text-align: center
+                                                  text: Extension Items
                                               - component: oh-repeater
                                                 config:
                                                   for: i
-                                                  sourceType: range
                                                   rangeStart: "=props.extensionItem1 ? Number(1) : (!props.extensionItem1 && props.extensionItem2) ? Number(2) : ''"
                                                   rangeStop: "=(props.extensionItem1 && props.extensionItem2) ? Number(2) : (props.extensionItem1 && !props.extensionItem2) ? Number(1) : Number(2)"
+                                                  sourceType: range
                                                 slots:
                                                   default:
                                                     - component: f7-block
                                                       config:
                                                         style:
+                                                          align-items: center
                                                           display: flex
                                                           flex-flow: row wrap
-                                                          padding: 0 5% 0 5%
                                                           justify-content: space-evenly
-                                                          align-items: center
+                                                          padding: 0 5% 0 5%
                                                       slots:
                                                         default:
                                                           - component: f7-icon
                                                             config:
-                                                              style:
-                                                                min-width: 40px
-                                                                line-height: 2
-                                                              size: 2em
-                                                              f7: '=props["extensionItem" + loop.i + "Icon"] ? ((Number.parseInt(items[props["extensionItem" + loop.i]].state) > 75) ? props["extensionItem" + loop.i + "Icon"].split(",")[0] : (Number.parseInt(items[props["extensionItem" + loop.i]].state) > 25) ? props["extensionItem" + loop.i + "Icon"].split(",")[1] : props["extensionItem" + loop.i + "Icon"].split(",")[2]) : "clear"'
                                                               color: '=(Number.parseInt(items[props["extensionItem" + loop.i]].state) > 75) ? "green" : (Number.parseInt(items[props["extensionItem" + loop.i]].state) > 25) ? "yellow" : "red"'
+                                                              f7: '=props["extensionItem" + loop.i + "Icon"] ? ((Number.parseInt(items[props["extensionItem" + loop.i]].state) > 75) ? props["extensionItem" + loop.i + "Icon"].split(",")[0] : (Number.parseInt(items[props["extensionItem" + loop.i]].state) > 25) ? props["extensionItem" + loop.i + "Icon"].split(",")[1] : props["extensionItem" + loop.i + "Icon"].split(",")[2]) : "clear"'
+                                                              size: 2em
+                                                              style:
+                                                                line-height: 2
+                                                                min-width: 40px
                                                           - component: f7-badge
                                                             config:
-                                                              style:
-                                                                line-height: 3
-                                                                font-size: 1em
-                                                                min-width: 30px
-                                                                margin: 0 5px 0 5px
                                                               color: '=(Number.parseInt(items[props["extensionItem" + loop.i]].state) > 75) ? "green" : (Number.parseInt(items[props["extensionItem" + loop.i]].state) > 25) ? "yellow" : "red"'
+                                                              style:
+                                                                font-size: 1em
+                                                                line-height: 3
+                                                                margin: 0 5px 0 5px
+                                                                min-width: 30px
                                                             slots:
                                                               default:
                                                                 - component: Label
