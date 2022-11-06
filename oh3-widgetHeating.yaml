@@ -16,6 +16,13 @@ props:
       type: TEXT
       groupName: mainItems
     - context: item
+      description: Window State [Contact-Item]
+      label: WindowState Item
+      name: windowItem
+      required: true
+      type: TEXT
+      groupName: mainItems
+    - context: item
       description: Humidity Item [Number-Item]
       label: Humidity Item
       name: humItem
@@ -70,16 +77,9 @@ props:
       groupName: extensionItems
       advanced: true
     - context: item
-      description: Example Mode Item [String-Item] (eg. State of heating valve)
-      label: Example Mode Item
-      name: exampleModeItem
-      required: false
-      type: TEXT
-      groupName: extensionItems
-      advanced: true
-    - description: Example Mode Strings as Array eg. OFF,ON,BOOST. The string will be send to the Example-Mode-Item [String-Item]
-      label: Example Mode Array
-      name: exampleModeArray
+      description: Boost Mode Item [Switch-Item]
+      label: Boost Mode Item
+      name: boostModeItem
       required: false
       type: TEXT
       groupName: extensionItems
@@ -240,7 +240,7 @@ props:
       advanced: true
   parameterGroups:
     - name: mainItems
-      label: Main Items (setpoint-temperature, current temperature, humidity)
+      label: Main Items (setpoint-temperature, current temperature, window state, humidity)
     - name: advancedItems
       label: Advanced Items (Battery-State, ...)
     - name: generalSettings
@@ -313,10 +313,7 @@ config:
       left: 50%;
       transform: translate(-50%);
     }
-<<<<<<< HEAD
-=======
   title: "=(props.location) ? 'Klima ' + props.location : ''"
->>>>>>> f109591 (sort yaml file)
 slots:
   default:
     - component: f7-card-content
@@ -650,7 +647,7 @@ slots:
                                                     position: absolute
                                                     text-align: center
                                                     top: 50%
-                                                    transform: "=props.exampleModeItem ? 'translate(-50%, -50%) rotate(30deg)' : 'translate(-50%, -50%)'"
+                                                    transform: "=props.boostModeItem ? 'translate(-50%, -50%) rotate(30deg)' : 'translate(-50%, -50%)'"
                                                     transition: 0.7s ease
                                                     width: "=props.size ? (Number(props.size)*0.15) +'px' : '15%'"
                                                     z-index: 99 !important
@@ -724,7 +721,7 @@ slots:
                                                 config:
                                                   class: buttonContainer
                                                   style:
-                                                    display: "=props.exampleModeItem ? '' : 'none'"
+                                                    display: "=props.boostModeItem ? '' : 'none'"
                                                     height: 100%
                                                     left: 50%
                                                     margin-top: 0px
@@ -740,7 +737,7 @@ slots:
                                                   default:
                                                     - component: oh-button
                                                       config:
-                                                        popoverOpen: ='.' + props.location + '.popoverExampleMode'
+                                                        popoverOpen: ='.' + props.location + '.popoverBoostMode'
                                                         style:
                                                           bottom: 0%
                                                           color: "=props.colorButton ? props.colorButton + ' !important': ''"
@@ -753,7 +750,7 @@ slots:
                                                         default:
                                                           - component: f7-icon
                                                             config:
-                                                              f7: wrench
+                                                              f7: "=(props.boostModeItem  && items[props.boostModeItem].state == 'OFF') ? 'bolt' : 'bolt_fill'"
                                                               style:
                                                                 font-size: "=props.fontSizeButtons ? props.fontSizeButtons : '2em'"
                                                                 margin-top: auto
@@ -762,7 +759,7 @@ slots:
                                                                 transform: translate(-50%, -50%)
                                                           - component: f7-popover
                                                             config:
-                                                              class: =props.location + ' popoverExampleMode'
+                                                              class: =props.location + ' popoverBoostMode'
                                                             slots:
                                                               default:
                                                                 - component: f7-card
@@ -795,8 +792,12 @@ slots:
                                                                                     : ? containerStyle
                                                                                       : width: 100%
                                                                                       for: buttonlabel
+<<<<<<< HEAD
                                                                                       in: =props.exampleModeArray.split(",")
 >>>>>>> f109591 (sort yaml file)
+=======
+                                                                                      in: =[ON,OFF]
+>>>>>>> 833ad74 (add boostMode and windowState)
                                                                                     ? slots
                                                                                     : ? default
                                                                                       : - component: oh-button
@@ -812,8 +813,8 @@ slots:
                                                                                           : action: command
 >>>>>>> f109591 (sort yaml file)
                                                                                             actionCommand: =loop.buttonlabel
-                                                                                            actionItem: "=props.exampleModeItem ? props.exampleModeItem : ''"
-                                                                                            active: "=props.exampleModeItem ? (items[props.exampleModeItem].state === loop.buttonlabel ? true : false) : ''"
+                                                                                            actionItem: "=props.boostModeItem ? props.boostModeItem : ''"
+                                                                                            active: "=props.boostModeItem ? (items[props.boostModeItem].state === loop.buttonlabel ? true : false) : ''"
                                                                                             class: margin
                                                                                             color: "=props.colorButton ? props.colorButton : ''"
                                                                                             outline: true
@@ -919,6 +920,8 @@ slots:
                                                           - component: Label
                                                             config:
                                                               text: =props.location
+                                                              style:
+                                                                font-weight: bold
                                                     - component: f7-swiper
                                                       config:
                                                         params:
@@ -943,6 +946,8 @@ slots:
                                                             config:
                                                               style:
                                                                 display: "=props.humItem ? '' : 'none'"
+                                                                style:
+                                                                  font-weight: bold
                                                             slots:
                                                               default:
                                                                 - component: f7-block
@@ -963,6 +968,8 @@ slots:
                                                                       - component: Label
                                                                         config:
                                                                           text: =items[props.humItem].state
+                                                                          style:
+                                                                            font-weight: bold
                                                                       - component: Label
                                                                         config:
                                                                           style:
@@ -993,21 +1000,27 @@ slots:
                                                                       - component: Label
                                                                         config:
                                                                           text: =Number(items[props.currentPointItem].state.split(' ')[0]).toFixed(1)
+                                                                          style:
+                                                                            font-weight: bold
                                                                       - component: Label
                                                                         config:
                                                                           style:
                                                                             font-size: "=props.fontSizeCenter ? 'calc(' + props.fontSizeCenter + ' * 0.2 )' : '0.6em'"
                                                                             vertical-align: top
+                                                                            font-weight: bold
                                                                           text: "=props.unit ? props.unit : items[props.currentPointItem].displayState.split(' ')[1]"
-                                                    - component: oh-image
+                                                    - component: oh-icon
                                                       config:
+                                                        icon: window
+                                                        state: props.windowItem
                                                         style:
-                                                          bottom: 5%
+                                                          color: "=props.colorButton ? props.colorButton : ''"
+                                                          height: 80%
                                                           left: 50%
-                                                          position: absolute
-                                                          transform: translate(-50%)
-                                                          width: 40%
-                                                        url: "=props.imgUrl ? props.imgUrl : 'https://community-openhab-org.s3-eu-central-1.amazonaws.com/original/2X/7/7d388a86c95471f89b1bb911d96d7609a3e3a059.svg'"
+                                                          opacity: 0.5
+                                                          top: 50%
+                                                          transform: translate(0%, -25%)
+                                                          width: 80%
                                   - component: f7-swiper-slide
                                     config:
                                       style:
