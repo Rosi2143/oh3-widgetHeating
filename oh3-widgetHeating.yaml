@@ -100,7 +100,7 @@ props:
       type: TEXT
       groupName: extensionItems
       advanced: true
-    - description: Choose the F7-Icons for the BatteryLow Item. -> <battery_100,battery_0>. 1st Icon = State == OFF, 2nd Icon = State == ON. w.g. battery_100,battery_0
+    - description: Choose the F7-Icons for the BatteryLow Item. -> <battery_100,battery_0>. 1st Icon = State == OFF, 2nd Icon = State == ON.
       label: BatteryLow F7-Icon
       name: extensionItem1Icon
       required: false
@@ -111,6 +111,29 @@ props:
       description: Battery-Voltage [Number-Item]
       label: Battery Voltage Item
       name: extensionItem1Value
+      required: false
+      type: TEXT
+      groupName: extensionItems
+      advanced: true
+    - context: item
+      description: PartyMode [Switch-Item]
+      label: PartyMode item
+      name: extensionItem2
+      required: false
+      type: TEXT
+      groupName: extensionItems
+      advanced: true
+    - description: Choose the F7-Icons for the PartyMode Item. -> <person,person_3_fill>. 1st Icon = State == OFF, 2nd Icon = State == ON.
+      label: PartyMode F7-Icon
+      name: extensionItem2Icon
+      required: false
+      type: TEXT
+      groupName: extensionItems
+      advanced: true
+    - context: item
+      description: PartyModeTemp [Number-Item]
+      label: PartyMode SetTemp Item
+      name: extensionItem2Value
       required: false
       type: TEXT
       groupName: extensionItems
@@ -1175,7 +1198,7 @@ slots:
                                                             config:
                                                               color: '=((items[props["extensionItem" + loop.i]].state) == "OFF") ? "green" : "red"'
                                                               f7: '=props["extensionItem" + loop.i + "Icon"] ? ((items[props["extensionItem" + loop.i]].state == "OFF") ? props["extensionItem" + loop.i + "Icon"].split(",")[0] : props["extensionItem" + loop.i + "Icon"].split(",")[1]) : "cloud"'
-                                                              size: 2em
+                                                              size: 1.4em
                                                               style:
                                                                 line-height: 2
                                                                 min-width: 40px
@@ -1184,7 +1207,7 @@ slots:
                                                               color: '=((items[props["extensionItem" + loop.i]].state) == "OFF") ? "green" : "red"'
                                                               style:
                                                                 font-size: 1em
-                                                                line-height: 3
+                                                                line-height: 2
                                                                 margin: 0 5px 0 5px
                                                                 min-width: 30px
                                                             slots:
