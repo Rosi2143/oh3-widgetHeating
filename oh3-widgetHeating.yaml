@@ -93,31 +93,24 @@ props:
       groupName: extensionItems
       advanced: true
     - context: item
-      description: Extension Item 1 eg. Battery-State [Number-Item]
-      label: Extension Item 1
+      description: BatteryLow [Switch-Item]
+      label: Battery Low item
       name: extensionItem1
       required: false
       type: TEXT
       groupName: extensionItems
       advanced: true
-    - description: Choose the F7-Icons for the Extension Item 1 as Array. -> <battery_100,battery_25,battery_0>. 1st Icon = Value > 75, 2nd Icon = Value > 25, 3th Icon = Value < 25
-      label: Extension Item 1 F7-Icon
+    - description: Choose the F7-Icons for the BatteryLow Item. -> <battery_100,battery_0>. 1st Icon = State == OFF, 2nd Icon = State == ON. w.g. battery_100,battery_0
+      label: BatteryLow F7-Icon
       name: extensionItem1Icon
       required: false
       type: TEXT
       groupName: extensionItems
       advanced: true
     - context: item
-      description: Extension Item 2 eg. Battery-State [Number-Item]
-      label: Extension Item 2
-      name: extensionItem2
-      required: false
-      type: TEXT
-      groupName: extensionItems
-      advanced: true
-    - description: Choose the F7-Icons for the Extension Item 2 F7-Icon as Array. -> <battery_100,battery_25,battery_0>. 1st Icon = Value > 75, 2nd Icon = Value > 25, 3th Icon = Value < 25
-      label: F7-Icon for the Extension Item 2
-      name: extensionItem2Icon
+      description: Battery-Voltage [Number-Item]
+      label: Battery Voltage Item
+      name: extensionItem1Value
       required: false
       type: TEXT
       groupName: extensionItems
@@ -255,7 +248,7 @@ props:
       label: Font Settings
     - name: chartSettings
       label: Chart Settings
-timestamp: Nov 4, 2022, 10:08:20 PM
+timestamp: Nov 6, 2022, 7:19:48 PM
 component: f7-card
 config:
   stylesheet: >
@@ -1132,7 +1125,7 @@ slots:
                                   - component: f7-swiper-slide
                                     config:
                                       style:
-                                        display: "=(props.extensionItem1 || props.extensionItem2)? '' : 'none'"
+                                        display: "=(props.extensionItem1 || props.extensionItem2)? ''<< : 'none'"
                                         height: 100%
                                         width: 100%
                                     slots:
@@ -1180,15 +1173,15 @@ slots:
                                                         default:
                                                           - component: f7-icon
                                                             config:
-                                                              color: '=(Number.parseInt(items[props["extensionItem" + loop.i]].state) > 75) ? "green" : (Number.parseInt(items[props["extensionItem" + loop.i]].state) > 25) ? "yellow" : "red"'
-                                                              f7: '=props["extensionItem" + loop.i + "Icon"] ? ((Number.parseInt(items[props["extensionItem" + loop.i]].state) > 75) ? props["extensionItem" + loop.i + "Icon"].split(",")[0] : (Number.parseInt(items[props["extensionItem" + loop.i]].state) > 25) ? props["extensionItem" + loop.i + "Icon"].split(",")[1] : props["extensionItem" + loop.i + "Icon"].split(",")[2]) : "clear"'
+                                                              color: '=((items[props["extensionItem" + loop.i]].state) == "OFF") ? "green" : "red"'
+                                                              f7: '=props["extensionItem" + loop.i + "Icon"] ? ((items[props["extensionItem" + loop.i]].state == "OFF") ? props["extensionItem" + loop.i + "Icon"].split(",")[0] : props["extensionItem" + loop.i + "Icon"].split(",")[1]) : "cloud"'
                                                               size: 2em
                                                               style:
                                                                 line-height: 2
                                                                 min-width: 40px
                                                           - component: f7-badge
                                                             config:
-                                                              color: '=(Number.parseInt(items[props["extensionItem" + loop.i]].state) > 75) ? "green" : (Number.parseInt(items[props["extensionItem" + loop.i]].state) > 25) ? "yellow" : "red"'
+                                                              color: '=((items[props["extensionItem" + loop.i]].state) == "OFF") ? "green" : "red"'
                                                               style:
                                                                 font-size: 1em
                                                                 line-height: 3
@@ -1198,4 +1191,4 @@ slots:
                                                               default:
                                                                 - component: Label
                                                                   config:
-                                                                    text: =items[props["extensionItem" + loop.i]].displayState
+                                                                    text: =items[props["extensionItem" + loop.i + "Value"]].displayState
