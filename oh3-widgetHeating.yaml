@@ -35,22 +35,24 @@ props:
       required: true
       type: TEXT
       groupName: generalSettings
-    - description: Minimum value
+    - default: "5"
+      description: Minimum value
       label: minTemp
       default: 5
       name: minTemp
       required: true
       type: TEXT
       groupName: generalSettings
-    - description: Maximum value
+    - default: "25"
+      description: Maximum value
       label: maxTemp
       default: 25
       name: maxTemp
       required: true
       groupName: generalSettings
-    - description: Visual size of the control in px (default 400px), without a size the design is responsive
+    - default: "300"
+      description: Visual size of the control in px (default 300px), without a size the design is responsive
       label: size [px]
-      default: 300
       name: size
       required: false
       type: TEXT
@@ -101,7 +103,8 @@ props:
       type: TEXT
       groupName: extensionItems
       advanced: true
-    - description: Choose the F7-Icons for the BatteryLow Item. -> <battery_100,battery_0>. 1st Icon = State == OFF, 2nd Icon = State == ON.
+    - default: battery_100,battery_0
+      description: Choose the F7-Icons for the BatteryLow Item. -> <battery_100,battery_0>. 1st Icon = State == OFF, 2nd Icon = State == ON.
       label: BatteryLow F7-Icon
       name: extensionItem1Icon
       required: false
@@ -117,6 +120,7 @@ props:
       groupName: extensionItems
       advanced: true
     - context: item
+      default: person_1,person_3
       description: PartyMode [Switch-Item]
       label: PartyMode item
       name: extensionItem2
@@ -126,7 +130,6 @@ props:
       advanced: true
     - description: Choose the F7-Icons for the PartyMode Item. -> <person,person_3_fill>. 1st Icon = State == OFF, 2nd Icon = State == ON.
       label: PartyMode F7-Icon
-      default: person_1,person_3
       name: extensionItem2Icon
       required: false
       type: TEXT
@@ -237,7 +240,7 @@ props:
       groupName: colors
       advanced: true
     - description: Control if the Chart is visible
-      label: Chart Switch
+      label: Chart Swtich
       name: chartSwitch
       required: false
       type: BOOLEAN
@@ -273,7 +276,7 @@ props:
       label: Font Settings
     - name: chartSettings
       label: Chart Settings
-timestamp: Nov 6, 2022, 7:19:48 PM
+timestamp: Nov 12, 2022, 9:25:24 PM
 component: f7-card
 config:
   stylesheet: >
@@ -894,7 +897,7 @@ slots:
                                                     animation: skeleton-effect-fade 2s linear infinite
                                                     background: "=props.colorSetMarker ? 'radial-gradient(' + props.colorSetMarker +' 30%, transparent 50%)' : 'radial-gradient(var(--f7-theme-color) 30%, transparent 50%)'"
                                                     border-radius: 50%
-                                                    display: "=(props.valveItem && items[props.valveItem].state == 'ON' )? '' : 'none'"
+                                                    display: "=(props.valveItem && items[props.valveItem].state > 10 )? '' : 'none'"
                                                     height: 100%
                                                     left: 50%
                                                     margin-top: 0px
@@ -937,9 +940,9 @@ slots:
                                                         default:
                                                           - component: Label
                                                             config:
-                                                              text: =props.location
                                                               style:
                                                                 font-weight: bold
+                                                              text: =props.location
                                                     - component: f7-swiper
                                                       config:
                                                         params:
@@ -985,9 +988,9 @@ slots:
                                                                     default:
                                                                       - component: Label
                                                                         config:
-                                                                          text: =items[props.humItem].state
                                                                           style:
                                                                             font-weight: bold
+                                                                          text: =items[props.humItem].state.split(' ')[0]
                                                                       - component: Label
                                                                         config:
                                                                           style:
@@ -1017,15 +1020,15 @@ slots:
                                                                     default:
                                                                       - component: Label
                                                                         config:
-                                                                          text: =Number(items[props.currentPointItem].state.split(' ')[0]).toFixed(1)
                                                                           style:
                                                                             font-weight: bold
+                                                                          text: =Number(items[props.currentPointItem].state.split(' ')[0]).toFixed(1)
                                                                       - component: Label
                                                                         config:
                                                                           style:
                                                                             font-size: "=props.fontSizeCenter ? 'calc(' + props.fontSizeCenter + ' * 0.2 )' : '0.6em'"
-                                                                            vertical-align: top
                                                                             font-weight: bold
+                                                                            vertical-align: top
                                                                           text: "=props.unit ? props.unit : items[props.currentPointItem].displayState.split(' ')[1]"
                                                     - component: oh-icon
                                                       config:
