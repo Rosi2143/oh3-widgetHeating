@@ -50,6 +50,7 @@ props:
       groupName: generalSettings
     - description: Visual size of the control in px (default 400px), without a size the design is responsive
       label: size [px]
+      default: 300
       name: size
       required: false
       type: TEXT
@@ -125,6 +126,7 @@ props:
       advanced: true
     - description: Choose the F7-Icons for the PartyMode Item. -> <person,person_3_fill>. 1st Icon = State == OFF, 2nd Icon = State == ON.
       label: PartyMode F7-Icon
+      default: person_1,person_3
       name: extensionItem2Icon
       required: false
       type: TEXT
@@ -235,7 +237,7 @@ props:
       groupName: colors
       advanced: true
     - description: Control if the Chart is visible
-      label: Chart Swtich
+      label: Chart Switch
       name: chartSwitch
       required: false
       type: BOOLEAN
