@@ -30,12 +30,14 @@ props:
       groupName: generalSettings
     - description: Minimum value
       label: minTemp
+      default: 5
       name: minTemp
       required: true
       type: TEXT
       groupName: generalSettings
     - description: Maximum value
       label: maxTemp
+      default: 25
       name: maxTemp
       required: true
       groupName: generalSettings
@@ -294,15 +296,15 @@ config:
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      border-radius: 50%;    
+      border-radius: 50%;
     } .thermostat .bar .inner_bar {
-      margin-top: 0; 
+      margin-top: 0;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       border-radius: 100%;
-      z-index: 4 !important;    
+      z-index: 4 !important;
     } .thermostat .bar .inner_bar .block {
       content: "";
       display: block;
@@ -311,7 +313,7 @@ config:
       height: 100%;
       left: 50%;
       transform: translate(-50%);
-    }    
+    }
 slots:
   default:
     - component: f7-card-content
@@ -690,23 +692,24 @@ slots:
                                                                   slots:
                                                                     default:
                                                                       - component: f7-row
-                                                                        config: {}
+                                                                        config:
+                                                                          {}
                                                                         slots:
-                                                                          default:
-                                                                            - component: f7-col
-                                                                              slots:
-                                                                                default:
-                                                                                  - component: oh-repeater
-                                                                                    config:
-                                                                                      for: buttonlabel
+                                                                          ? default
+                                                                          : - component: f7-col
+                                                                              ? slots
+                                                                              : ? default
+                                                                                : - component: oh-repeater
+                                                                                    ? config
+                                                                                    : for: buttonlabel
                                                                                       in: =props.heatingModeArray.split(",")
-                                                                                      containerStyle:
-                                                                                        width: 100%
-                                                                                    slots:
-                                                                                      default:
-                                                                                        - component: oh-button
-                                                                                          config:
-                                                                                            color: "=props.colorButton ? props.colorButton : ''"
+                                                                                      ? containerStyle
+                                                                                      : width: 100%
+                                                                                    ? slots
+                                                                                    : ? default
+                                                                                      : - component: oh-button
+                                                                                          ? config
+                                                                                          : color: "=props.colorButton ? props.colorButton : ''"
                                                                                             class: margin
                                                                                             text: =loop.buttonlabel
                                                                                             outline: true
@@ -771,23 +774,24 @@ slots:
                                                                   slots:
                                                                     default:
                                                                       - component: f7-row
-                                                                        config: {}
+                                                                        config:
+                                                                          {}
                                                                         slots:
-                                                                          default:
-                                                                            - component: f7-col
-                                                                              slots:
-                                                                                default:
-                                                                                  - component: oh-repeater
-                                                                                    config:
-                                                                                      for: buttonlabel
+                                                                          ? default
+                                                                          : - component: f7-col
+                                                                              ? slots
+                                                                              : ? default
+                                                                                : - component: oh-repeater
+                                                                                    ? config
+                                                                                    : for: buttonlabel
                                                                                       in: =props.exampleModeArray.split(",")
-                                                                                      containerStyle:
-                                                                                        width: 100%
-                                                                                    slots:
-                                                                                      default:
-                                                                                        - component: oh-button
-                                                                                          config:
-                                                                                            color: "=props.colorButton ? props.colorButton : ''"
+                                                                                      ? containerStyle
+                                                                                      : width: 100%
+                                                                                    ? slots
+                                                                                    : ? default
+                                                                                      : - component: oh-button
+                                                                                          ? config
+                                                                                          : color: "=props.colorButton ? props.colorButton : ''"
                                                                                             class: margin
                                                                                             text: =loop.buttonlabel
                                                                                             outline: true
