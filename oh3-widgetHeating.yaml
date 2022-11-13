@@ -120,7 +120,6 @@ props:
       groupName: extensionItems
       advanced: true
     - context: item
-      default: person_1,person_3
       description: PartyMode [Switch-Item]
       label: PartyMode item
       name: extensionItem2
@@ -128,7 +127,8 @@ props:
       type: TEXT
       groupName: extensionItems
       advanced: true
-    - description: Choose the F7-Icons for the PartyMode Item. -> <person,person_3_fill>. 1st Icon = State == OFF, 2nd Icon = State == ON.
+    - default: person_1,person_3
+      description: Choose the F7-Icons for the PartyMode Item. -> <person,person_3_fill>. 1st Icon = State == OFF, 2nd Icon = State == ON.
       label: PartyMode F7-Icon
       name: extensionItem2Icon
       required: false
