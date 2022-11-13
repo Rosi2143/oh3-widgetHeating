@@ -72,7 +72,7 @@ props:
       type: TEXT
       groupName: extensionItems
       advanced: true
-    - description: Heating mode strings as array eg. AUTO,MANU,OFF. The string will be send to the Heating-Mode-Item [String-Item]
+    - description: Heating mode strings as array eg. AUTO,MAN,OFF. The string will be send to the Heating-Mode-Item [String-Item]
       label: Heating Mode Array
       name: heatingModeArray
       required: false
@@ -240,7 +240,7 @@ props:
       groupName: colors
       advanced: true
     - description: Control if the Chart is visible
-      label: Chart Swtich
+      label: Chart Switch
       name: chartSwitch
       required: false
       type: BOOLEAN
